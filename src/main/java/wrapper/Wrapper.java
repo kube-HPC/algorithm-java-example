@@ -1,25 +1,14 @@
 package wrapper;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.glassfish.tyrus.client.ClientManager;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.apache.commons.lang3.StringUtils;
 
-import javax.websocket.ClientEndpoint;
-import javax.websocket.ClientEndpointConfig;
-import javax.websocket.CloseReason;
-import javax.websocket.ContainerProvider;
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.WebSocketContainer;
+import javax.websocket.*;
 import java.net.URI;
-import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -164,33 +153,17 @@ public class Wrapper {
                                 m_args=new JSONObject();
                                 m_input=new JSONArray();
                             }
-
-
                             break;
                         case "stop":
                             m_algorithm.Stop();
                             sendMessage("stopped",null);
                             break;
-//                        case "subPipelineStarted":
-//                            onSubPipelineStarted(((JSONObject) (msgAsJson).get("data")));
-//                            break;
-//
-//                        case "subPipelineError":
-//                            onSubPipelineError(((JSONObject) (msgAsJson).get("data")));
-//                            break;
-//                        case "subPipelineDone":
-//                            onSubPipelineDone(((JSONObject) (msgAsJson).get("data")));
-//                            break;
-//                        case "subPipelineStopped":
-//                            onSubPipelineStopped(((JSONObject) (msgAsJson).get("data")));
-//                            break;
-
                         default:
                             logger.info("got unknown command: " + command);
 
                     }
                 } catch (Exception exc) {
-
+                    logger.error(exc);
                 }
                 return null;
             });

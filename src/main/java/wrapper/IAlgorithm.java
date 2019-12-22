@@ -12,7 +12,4 @@ public interface IAlgorithm {
 
     void Cleanup();
 
-    void StartSubPipeLine(String subPipeName, String id, Object message);
-
-    void SubPipelineDone(String subId, Object data);
 }

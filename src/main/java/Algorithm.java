@@ -30,14 +30,4 @@ public class Algorithm implements IAlgorithm {
     public void Cleanup() {
 
     }
-
-    @Override
-    public void StartSubPipeLine(String subPipeName, String id, Object message) {
-
-    }
-
-    @Override
-    public void SubPipelineDone(String subId, Object data) {
-
-    }
 }
